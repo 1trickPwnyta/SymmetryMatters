@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	
+  <RoomStatDef>
+    <defName>Symmetry</defName>
+    <label>symmetry</label>
+    <workerClass>SymmetryMatters.RoomStatWorker_Symmetry</workerClass>
+    <updatePriority>2</updatePriority>
+    <roomlessScore>0</roomlessScore>
+    <scoreStages>
+      <li>
+        <label>very asymmetrical</label>
+      </li>
+      <li>
+        <minScore>-7</minScore>
+        <label>asymmetrical</label>
+      </li>
+      <li>
+        <minScore>-3</minScore>
+        <label>slightly asymmetrical</label>
+      </li>
+      <li>
+        <minScore>3</minScore>
+        <label>symmetrical</label>
+      </li>
+      <li>
+        <minScore>7</minScore>
+        <label>very symmetrical</label>
+      </li>
+	  <li>
+        <minScore>10</minScore>
+        <label>perfect symmetry</label>
+      </li>
+    </scoreStages>
+  </RoomStatDef>
+	
+</Defs>

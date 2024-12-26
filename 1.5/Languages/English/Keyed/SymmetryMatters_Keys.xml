@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<SymmetryMatters_RoomImpressivenessEffect>Room impressiveness effect: {0}</SymmetryMatters_RoomImpressivenessEffect>
+	<SymmetryMatters_RoomImpressivenessEffectDesc>Higher values cause a room's symmetry to affect its impressiveness more.</SymmetryMatters_RoomImpressivenessEffectDesc>
+</LanguageData>
