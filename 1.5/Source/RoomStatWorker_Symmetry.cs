@@ -48,7 +48,15 @@ namespace SymmetryMatters
                 if (inRoom1 && inRoom2)
                 {
                     Building building1 = cell1.GetEdifice(room.Map);
+                    if (building1 != null && building1.GetStatValue(StatDefOf.WorkToBuild) == 0f)
+                    {
+                        building1 = null;
+                    }
                     Building building2 = cell2.GetEdifice(room.Map);
+                    if (building2 != null && building2.GetStatValue(StatDefOf.WorkToBuild) == 0f)
+                    {
+                        building2 = null;
+                    }
                     spaceScores.Add((building1 == null) == (building2 == null) ? 2f : -10f);
 
                     float buildingScore = building1?.def == building2?.def ? 1.5f : -7.5f;
