@@ -60,7 +60,14 @@ namespace SymmetryMatters
                     spaceScores.Add((building1 == null) == (building2 == null) ? 2f : -10f);
 
                     float buildingScore = building1?.def == building2?.def ? 1.5f : -7.5f;
-                    buildingScore += building1?.Stuff == building2?.Stuff ? 0.5f : -2.5f;
+                    if (building1?.PaintColorDef != null && building2?.PaintColorDef != null)
+                    {
+                        buildingScore += building1.PaintColorDef == building2.PaintColorDef ? 0.5f : -2.5f;
+                    }
+                    else
+                    {
+                        buildingScore += building1?.Stuff == building2?.Stuff ? 0.5f : -2.5f;
+                    }
                     buildingScores.Add(buildingScore);
 
                     if (!IsWallOrRock(building1) && !IsWallOrRock(building2))
