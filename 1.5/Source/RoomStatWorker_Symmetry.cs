@@ -74,7 +74,11 @@ namespace SymmetryMatters
                     {
                         TerrainDef floor1 = cell1.GetTerrain(room.Map);
                         TerrainDef floor2 = cell2.GetTerrain(room.Map);
-                        floorScores.Add(floor1 == floor2 ? 1f : -5f);
+                        float floorScore = floor1 == floor2 ? 0.8f : -4f;
+                        ColorDef floorColor1 = room.Map.terrainGrid.ColorAt(cell1);
+                        ColorDef floorColor2 = room.Map.terrainGrid.ColorAt(cell2);
+                        floorScore += floorColor1 == floorColor2 ? 0.2f : -1f;
+                        floorScores.Add(floorScore);
                     }
                 }
             }
