@@ -2,4 +2,6 @@
 <LanguageData>
 	<SymmetryMatters_RoomImpressivenessEffect>Room impressiveness effect: {0}</SymmetryMatters_RoomImpressivenessEffect>
 	<SymmetryMatters_RoomImpressivenessEffectDesc>Higher values cause a room's symmetry to affect its impressiveness more.</SymmetryMatters_RoomImpressivenessEffectDesc>
+	<SymmetryMatters_AsymmetryPunishFactor>Asymmetry punish factor: {0}</SymmetryMatters_AsymmetryPunishFactor>
+	<SymmetryMatters_AsymmetryPunishFactorDesc>Higher values cause a room's asymmetrical features to affect its symmetry score more.</SymmetryMatters_AsymmetryPunishFactorDesc>
 </LanguageData>

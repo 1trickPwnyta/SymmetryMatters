@@ -7,7 +7,9 @@
 		<li>1.5</li>
 	</supportedVersions>
 	<description>
+A mod full of arbitrary nonsense that adds a symmetry score to your rooms! The symmetry score, in turn, affects the room's overall impressiveness score. Symmetry takes into account not only room shape, but also furnishings, materials used to build the room, paint colors, and flooring.
 
+There are settings to control how much the symmetry score impacts the overall impressiveness score as well as how much weight to give to asymmetry relative to symmetry.
 
 === Credits ===
 Mod icon: twitter.com/mouse_draws

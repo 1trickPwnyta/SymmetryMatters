@@ -43,7 +43,7 @@ namespace SymmetryMatters
 
                 bool inRoom1 = allCells.Contains(cell1);
                 bool inRoom2 = allCells.Contains(cell2);
-                inRoomScores.Add(inRoom1 == inRoom2 ? 5f : -25f);
+                inRoomScores.Add(inRoom1 == inRoom2 ? 5f : -5f * SymmetryMattersSettings.AsymmetryPunishFactor);
 
                 if (inRoom1 && inRoom2)
                 {
@@ -57,16 +57,16 @@ namespace SymmetryMatters
                     {
                         building2 = null;
                     }
-                    spaceScores.Add((building1 == null) == (building2 == null) ? 2f : -10f);
+                    spaceScores.Add((building1 == null) == (building2 == null) ? 2f : -2f * SymmetryMattersSettings.AsymmetryPunishFactor);
 
-                    float buildingScore = building1?.def == building2?.def ? 1.5f : -7.5f;
+                    float buildingScore = building1?.def == building2?.def ? 1.5f : -1.5f * SymmetryMattersSettings.AsymmetryPunishFactor;
                     if (building1?.PaintColorDef != null && building2?.PaintColorDef != null)
                     {
-                        buildingScore += building1.PaintColorDef == building2.PaintColorDef ? 0.5f : -2.5f;
+                        buildingScore += building1.PaintColorDef == building2.PaintColorDef ? 0.5f : -0.5f * SymmetryMattersSettings.AsymmetryPunishFactor;
                     }
                     else
                     {
-                        buildingScore += building1?.Stuff == building2?.Stuff ? 0.5f : -2.5f;
+                        buildingScore += building1?.Stuff == building2?.Stuff ? 0.5f : -0.5f * SymmetryMattersSettings.AsymmetryPunishFactor;
                     }
                     buildingScores.Add(buildingScore);
 
@@ -74,10 +74,10 @@ namespace SymmetryMatters
                     {
                         TerrainDef floor1 = cell1.GetTerrain(room.Map);
                         TerrainDef floor2 = cell2.GetTerrain(room.Map);
-                        float floorScore = floor1 == floor2 ? 0.8f : -4f;
+                        float floorScore = floor1 == floor2 ? 0.8f : -0.8f * SymmetryMattersSettings.AsymmetryPunishFactor;
                         ColorDef floorColor1 = room.Map.terrainGrid.ColorAt(cell1);
                         ColorDef floorColor2 = room.Map.terrainGrid.ColorAt(cell2);
-                        floorScore += floorColor1 == floorColor2 ? 0.2f : -1f;
+                        floorScore += floorColor1 == floorColor2 ? 0.2f : -0.2f * SymmetryMattersSettings.AsymmetryPunishFactor;
                         floorScores.Add(floorScore);
                     }
                 }
