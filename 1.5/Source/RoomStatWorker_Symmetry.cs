@@ -1,4 +1,6 @@
-﻿using RimWorld;
+﻿using HarmonyLib;
+using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,8 +10,17 @@ namespace SymmetryMatters
 {
     public class RoomStatWorker_Symmetry : RoomStatWorker
     {
+        private static Dictionary<Room, Tuple<float, int>> cache = new Dictionary<Room, Tuple<float, int>>();
+
         public override float GetScore(Room room)
         {
+            Tuple<float, int> cacheValue = cache.ContainsKey(room) ? cache[room] : null;
+            if (cacheValue != null && cacheValue.Item2 > Find.TickManager.TicksGame - 600)
+            {
+                //typeof(Room).Field("statsAndRoleDirty").SetValue(room, true);
+                return cacheValue.Item1;
+            }
+
             CellRect rect = CellRect.FromCellList(room.BorderCells);
 
             float centerZ = (rect.minZ + rect.maxZ) / 2f;
@@ -24,7 +35,9 @@ namespace SymmetryMatters
 
             float highestScore = Mathf.Max(horizontalScore, verticalScore);
             float lowestScore = Mathf.Min(horizontalScore, verticalScore);
-            return Mathf.Lerp(lowestScore, highestScore, 0.9f);
+            float score = Mathf.Lerp(lowestScore, highestScore, 0.9f);
+            //cache[room] = new Tuple<float, int>(score, Find.TickManager.TicksGame);
+            return score;
         }
 
         private float GetScore(List<IntVec3> side1, List<IntVec3> side2, Room room)
