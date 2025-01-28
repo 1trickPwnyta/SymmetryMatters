@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/RoomRoleDef[defName="Bedroom" or defName="PrisonCell" or defName="DiningRoom" or defName="RecRoom" or defName="Hospital" or defName="Barracks" or defName="PrisonBarracks"]/relatedStats</xpath>
+    <value>
+	  <li>Symmetry</li>
+	</value>
+  </Operation>
+</Patch>
