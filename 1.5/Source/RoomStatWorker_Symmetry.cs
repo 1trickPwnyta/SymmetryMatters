@@ -13,14 +13,18 @@ namespace SymmetryMatters
 
         public override float GetScore(Room room)
         {
-            Tuple<float, int> cacheValue = cache.ContainsKey(room) ? cache[room] : null;
-            if (cacheValue != null && cacheValue.Item2 > Find.TickManager.TicksGame - 600)
-            {
-                //typeof(Room).Field("statsAndRoleDirty").SetValue(room, true);
-                return cacheValue.Item1;
-            }
-
             CellRect rect = CellRect.FromCellList(room.BorderCells);
+            bool cachingEnabled = SymmetryMattersSettings.LargeRoomCacheExpiryTicks > 0 && rect.Area > 625;
+
+            if (cachingEnabled)
+            {
+                Tuple<float, int> cacheValue = cache.ContainsKey(room) ? cache[room] : null;
+                if (cacheValue != null && cacheValue.Item2 > Find.TickManager.TicksGame)
+                {
+                    Symmetry.ForceRoomRecalcAt(room, cacheValue.Item2);
+                    return cacheValue.Item1;
+                }
+            }
 
             float centerZ = (rect.minZ + rect.maxZ) / 2f;
             List<IntVec3> top = rect.Cells.Where(i => i.z < centerZ).OrderBy(c => c.z).ThenBy(c => c.x).ToList();
@@ -35,7 +39,10 @@ namespace SymmetryMatters
             float highestScore = Mathf.Max(horizontalScore, verticalScore);
             float lowestScore = Mathf.Min(horizontalScore, verticalScore);
             float score = Mathf.Lerp(lowestScore, highestScore, 0.9f);
-            //cache[room] = new Tuple<float, int>(score, Find.TickManager.TicksGame);
+            if (cachingEnabled)
+            {
+                cache[room] = new Tuple<float, int>(score, Find.TickManager.TicksGame + 600);
+            }
             return score;
         }
 
