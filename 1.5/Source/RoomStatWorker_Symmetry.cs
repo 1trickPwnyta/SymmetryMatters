@@ -14,6 +14,10 @@ namespace SymmetryMatters
         public override float GetScore(Room room)
         {
             CellRect rect = CellRect.FromCellList(room.BorderCells);
+            if (rect.Area > 1250)
+            {
+                return 0f;
+            }
             bool cachingEnabled = SymmetryMattersSettings.LargeRoomCacheExpiryTicks > 0 && rect.Area > 625;
 
             if (cachingEnabled)
