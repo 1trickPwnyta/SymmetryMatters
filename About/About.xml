@@ -3,6 +3,7 @@
 	<name>Symmetry Matters</name>
 	<author>1trickPwnyta</author>
 	<packageId>symmetrymatters.1trickPwnyta</packageId>
+	<modVersion>1.1.0</modVersion>
 	<supportedVersions>
 		<li>1.5</li>
 	</supportedVersions>
@@ -12,6 +13,7 @@ A mod full of arbitrary nonsense that adds a symmetry score to your rooms! The s
 There are settings to control how much the symmetry score impacts the overall impressiveness score as well as how much weight to give to asymmetry relative to symmetry.
 
 === Updates ===
+04/09/2025: Various performance enhancements and settings
 01/28/2025: Add symmetry to list of important stats for various room types
 
 === Credits ===
